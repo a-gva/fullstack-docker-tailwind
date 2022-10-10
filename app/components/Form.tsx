@@ -28,17 +28,14 @@ export default function Form() {
   };
 
   return (
-    <section className='flex flex-col justify-center items-center min-h-screen '>
-      <div className='w-full max-w-md bg-orange-100 pt-5 rounded-md'>
-        <div className=''>
-          <h1 className='px-8 font-bold text-lg'>
+    <section className='flex flex-col justify-center items-center min-h-screen bg-slate-900'>
+      <div className='w-80 h-80 bg-slate-100 rounded-md shadow-lg px-8 py-8 flex-col'>
+        <div>
+          <h1 className='font-bold text-lg mb-5'>
             Subscribe to our newsletter
           </h1>
         </div>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className='shadow-lg rounded px-8 pt-6 pb-8'
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className=''>
           <div className='mb-4'>
             <label
               className='block text-gray-700 text-sm font-bold mb-2'
@@ -87,12 +84,12 @@ export default function Form() {
           <div className='flex text-center items-center'>
             <input
               type='submit'
-              className='cursor-pointer border-solid border-slate-500 text-slate-700 border-2 rounded px-5 py-2 font-bold text-center items-center  hover:bg-slate-500 hover:text-slate-50 hover:border-slate-500'
+              className='cursor-pointer border-solid border-slate-500 text-slate-700 border rounded px-5 py-1 mt-3 font-bold text-center items-center  hover:bg-slate-500 hover:text-slate-50 hover:border-slate-500'
             />
           </div>
         </form>
       </div>
-      <div>
+      <div className='text-center mt-5 '>
         <LinkButton text='Ver Usuários' url='users/list' />
       </div>
     </section>
