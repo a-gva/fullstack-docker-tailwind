@@ -1,7 +1,5 @@
 # fullstack-docker-tailwind
 
-### Database, Backend & Frontend
-
 - Typescript
 - NextJS (Backend & Frontend)
 - Postgres (Docker created)
@@ -14,8 +12,8 @@ Setup a .env file @ project root folder for postgres db creation and setup by Do
 DB_IMAGE=postgres
 DB_ACCESS_PORT=5432
 DB_INTERNAL_PORT=5432
-POSTGRES_PASSWORD=1234
-POSTGRES_USER=postgres
+DB_USER='postgres'
+DB_PASSWORD='1234'
 ```
 
 ## Step 2
@@ -31,15 +29,16 @@ docker-compose up
 Setup a .env file @ /app folder. Sample:
 
 ```sh
-DB="postgresql"
-USER_DB="postgres"
-PASSWORD="1234"
-HOST="localhost"
-PORT="5432"
-DATABASE="postgres"
-SCHEMA="public"
 
-DATABASE_URL='postgresql://${USER_DB}:${PASSWORD}@${HOST}:${PORT}/${DATABASE}?schema=${SCHEMA}'
+CONNECTOR=postgresql
+DB_NAME=postgres
+DB_USER=postgres
+DB_HOST=localhost
+DB_PASSWORD=1234
+DB_PORT=5432
+ARGS='schema=public'
+
+DATABASE_URL="${CONNECTOR}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?${ARGS}"
 ```
 
 ## Step 4
