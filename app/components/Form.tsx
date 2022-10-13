@@ -46,6 +46,7 @@ export default function Form() {
             <input
               className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
               id='name'
+              required
               type='text'
               placeholder='Name'
               {...register('name')}
@@ -66,21 +67,7 @@ export default function Form() {
               {...register('email')}
             />
           </div>
-          {/* <div className='mb-6'>
-            <label
-              className='block text-gray-700 text-sm font-bold mb-2'
-              htmlFor='password'
-            >
-              Password
-            </label>
-            <input
-              className='shadow appearance-none border border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
-              id='password'
-              type='password'
-              placeholder='******************'
-              {...register('password')}
-            />
-          </div> */}
+
           <div className='flex text-center items-center'>
             <input
               type='submit'
@@ -90,7 +77,7 @@ export default function Form() {
         </form>
       </div>
       <div className='text-center mt-5 '>
-        <LinkButton text='Ver Usuários' url='users/list' />
+        <LinkButton text='List users' url='/users' />
       </div>
     </section>
   );

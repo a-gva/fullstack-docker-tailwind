@@ -3,13 +3,13 @@
 // ex: api/users/getuserbyid - retorna um usuário específico
 // ex: api/users/create - cria um novo usuário
 
-import { prisma } from './db';
+import { prisma } from './dbConnection';
 
 export function getUsers() {
   return prisma.user.findMany();
 }
 
-export function getUserById(id: number) {
+export function getUser(id: string) {
   return prisma.user.findUnique({
     where: {
       id: id,
@@ -26,7 +26,7 @@ export function createUser(name: string, email: string) {
   });
 }
 
-export function deleteUser(id: number) {
+export function deleteUser(id: string) {
   return prisma.user.delete({
     where: {
       id: id,
@@ -34,7 +34,7 @@ export function deleteUser(id: number) {
   });
 }
 
-export function updateUser(id: number, name: string, email: string) {
+export function updateUser(id: string, name: string, email: string) {
   return prisma.user.update({
     where: {
       id: id,

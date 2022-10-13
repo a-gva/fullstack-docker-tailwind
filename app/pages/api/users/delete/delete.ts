@@ -1,4 +1,4 @@
-import { deleteUser } from '../db/users';
+import { deleteUser } from '../../db/users';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -7,5 +7,5 @@ export default async function handler(
 ) {
   const { id } = req.body;
   const user = await deleteUser(id);
-  res.status(200).json({ result: user });
+  res.status(200).json(user);
 }

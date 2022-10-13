@@ -5,6 +5,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+
     extend: {},
     screens: {
       'xsm': { 'max': '639px' },

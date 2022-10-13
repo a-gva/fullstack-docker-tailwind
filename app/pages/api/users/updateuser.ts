@@ -1,3 +1,6 @@
+// importa a função de atualização de usuário no banco, e a seguir...
+// executa a solicitação no banco de dados
+
 import { updateUser } from '../db/users';
 import { NextApiRequest, NextApiResponse } from 'next';
 
