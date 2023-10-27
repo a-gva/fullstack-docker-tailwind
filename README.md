@@ -13,7 +13,7 @@ DB_IMAGE=postgres
 DB_ACCESS_PORT=5432
 DB_INTERNAL_PORT=5432
 DB_USER='postgres'
-DB_PASSWORD='1234'
+DB_PASSWORD='yourpassword'
 ```
 
 ## Step 2
@@ -34,7 +34,7 @@ CONNECTOR=postgresql
 DB_NAME=postgres
 DB_USER=postgres
 DB_HOST=localhost
-DB_PASSWORD=1234
+DB_PASSWORD=yourpassword
 DB_PORT=5432
 ARGS='schema=public'
 
