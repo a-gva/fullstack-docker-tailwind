@@ -85,3 +85,7 @@ Thumbs.db
 #misc
 .env
 postgres_data
+.postgres_data/
+.postgres_data/*
+
+.next/
