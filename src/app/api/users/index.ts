@@ -2,14 +2,14 @@
 // executa a solicitação no banco de dados
 // renderiza os dados em tela
 
-import { getUsers } from '../db/users';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { getUsers } from '../db/users';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  //return with erro handling
+  //return with error handling
   try {
     const users = await getUsers();
     res.status(200).json(users);
