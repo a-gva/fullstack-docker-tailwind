@@ -1,3 +1,63 @@
 {
-  "extends": ["next/babel", "next/core-web-vitals"]
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals",
+    "plugin:storybook/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "no-restricted-properties": [
+      "warn",
+      {
+        "object": "process",
+        "property": "env",
+        "message": "For declaring and calling environment variables, use the `src/lib/env` pattern instead. More info in the repo docs."
+      }
+    ],
+    "react/no-unescaped-entities": [
+      "error",
+      {
+        "forbid": [
+          {
+            "char": ">",
+            "alternatives": ["&gt;"]
+          },
+          {
+            "char": "}",
+            "alternatives": ["&#125;"]
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/lib/env/index.ts"],
+      "rules": {
+        "no-restricted-properties": "off"
+      }
+    },
+    {
+      "files": ["*.test.ts", "*.test.tsx", "cypress/**/*.ts"],
+      "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/unbound-method": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-argument": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off"
+      }
+    }
+  ]
 }

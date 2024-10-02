@@ -1,3 +1,5 @@
+'use client';
+
 import { useForm } from 'react-hook-form';
 import LinkButton from './LinkButton';
 
@@ -12,8 +14,6 @@ export default function Form() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-
-  //onSubmit function
 
   const onSubmit = async (register: FormValues) => {
     console.log(`Register values: ${JSON.stringify(register)}`);

@@ -1,5 +1,4 @@
 // Creates a page for each user in the database
-import { InferGetStaticPropsType } from 'next';
 
 type TypeUsers = {
   id: string;
@@ -10,33 +9,36 @@ type TypeUsers = {
 // 1. Produces paths from the IDs of the users
 //get static paths - creates routes for each user
 // generates `/users/1` and `/users/2`
-export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3000/api/users/');
-  const data: TypeUsers[] = await res.json();
 
-  // Creates an array of paths
-  const paths = data.map((user: any) => {
-    // console.log(user);
-    // console.log(`User ID on Track: ${user.id}`);
-    return {
-      params: { id: user.id.toString() },
-    };
-  });
+// export const getUser = async () => {
+//   const res = await fetch('http://localhost:3000/api/users/');
+//   const data: TypeUsers[] = await res.json();
 
-  return {
-    paths,
-    fallback: false,
+//   // Creates an array of paths
+//   const paths = data.map((user: any) => {
+//     // console.log(user);
+//     // console.log(`User ID on Track: ${user.id}`);
+//     return {
+//       params: { id: user.id.toString() },
+//     };
+//   });
+
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
+
+interface UserPageProps {
+  params: {
+    userID: string;
   };
-};
+}
 
 // 2. Fetches the data for a single user
-export const getStaticProps = async (context: any) => {
-  console.log('Passo: 0 - Render context below !!');
-  console.log(context);
-  const id = context.params.id;
-  console.log('Passo: 1 - Render Id !!');
-  console.log(id);
-  const res = await fetch(`http://localhost:3000/api/users/${id}`, {
+export const getUserData = async (userID: string) => {
+  console.log(userID);
+  const res = await fetch(`http://localhost:3000/api/users/${userID}`, {
     method: 'GET',
     headers: {
       'User-Agent':
@@ -44,25 +46,28 @@ export const getStaticProps = async (context: any) => {
       Accept: 'application/json; charset=UTF-8',
     },
   });
-  console.log('Passo: 2 - Render Res Below!!');
   console.log(res);
-  console.log('Passo: 3 - Last Step Before res.json !!');
   const data = await res.json();
 
-  // if (!userData) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
-  return {
-    props: { user: data }, // will be passed to the page component as props
-  };
+  if (!data) {
+    console.log('No user data found');
+  }
+  return data;
 };
 
-//3. Renders the user data
-export default function User({
-  user,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default async function User({ params }: UserPageProps) {
+  const { userID } = params;
+
+  const userData = await getUserData(userID);
+
+  if (!userData) {
+    return (
+      <div>
+        <h1>No User Data Found</h1>
+      </div>
+    );
+  }
+
   return (
     <>
       <section className='bg-slate-900 min-h-screen'>
