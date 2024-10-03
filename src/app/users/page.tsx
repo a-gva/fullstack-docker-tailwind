@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import ActionButton from '../../components/ActionButton';
 import LinkButton from '../../components/LinkButton';
@@ -9,21 +11,15 @@ type IUser = {
   email: string;
 };
 
-type UsersProps = {
-  usersData: IUser[];
-};
-
-export const getUsers = async () => {
+export async function getUsers() {
   const res = await fetch('http://localhost:3000/api/users/');
-  const usersData: UsersProps = await res.json();
+  const usersData: IUser[] = await res.json();
 
-  return {
-    props: { usersData: usersData }, // will be passed to the page component as props
-  };
-};
+  return usersData;
+}
 
-//2. Renders the user data
-export default function Users({ usersData }: UsersProps) {
+export default async function Users() {
+  const usersData = await getUsers();
   return (
     <>
       <section className='bg-slate-900 min-h-screen'>

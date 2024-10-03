@@ -35,3 +35,18 @@ export async function DELETE(req: NextRequest, context: { params: Params }) {
     });
   }
 }
+export async function PUT(req: NextRequest, context: { params: Params }) {
+  const userID = context.params.id;
+
+  try {
+    await deleteUser(userID);
+    const users = await getUsers();
+    return NextResponse.json(users);
+  } catch (error: any) {
+    return NextResponse.json({
+      statusCode: 500,
+      message: error.message,
+      userID: userID || 'No user ID',
+    });
+  }
+}
